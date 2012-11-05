@@ -1,0 +1,158 @@
+% LaTeX Article Template
+\documentclass[12pt]{article}
+\topmargin -0.7in
+\textheight 9.0in
+%\textwidth 6in
+\textwidth 6.5in
+%\oddsidemargin 0.25in
+%\oddsidemargin -.25in
+\oddsidemargin 0.0in
+
+% \VignetteIndexEntry{Exact Binary Sequential Designs}
+% \VignetteKeyword{Hypothesis Test}
+% \VignetteKeyword{Design}
+
+\begin{document}
+
+\begin{center}
+{\Large \bf Exact Binary Sequential Designs} \\
+Jenn Kirk, Michael P. Fay \\
+\today
+\end{center}
+
+<<echo=FALSE>>=
+library(clinfun)
+@
+
+%\section{Description of Tests}
+
+\section{Example}
+\label{sec-example}
+
+We start with a simple example of use of the package. Suppose one wanted to test
+\begin{eqnarray*}
+& H_0: &  \theta < 0.4 \\
+&& vs. \\
+& H_1: & \theta \geq 0.4
+\end{eqnarray*}
+For example if historical treatments typically had less than 40\% success rate, and you wanted to test that a new treatment
+had better rates. Suppose you wanted to do a study with no more than 50 subjects, that had a power of at least 80\%
+to reject the null hypothesis at the one-sided 0.025 level if the new treatment had a success rate of 80\%. We pick a large effect so that the design will be small.
+You also want to be able to detect if the
+new treatment has less than 40\% success rate with a one-sided 0.05 level. To start we load the {\sf binseqtest} package,  create a binary sequential design, and give a table of with the design:
+<<>>=
+library(binseqtest)
+b0<-designOBFpower(100, theta0=.4,theta1=.8,power = 0.8, tsalpha = c(0.05, 0.025))
+stopTable(b0)
+@
+
+We can plot the design using the command {\sf plot(b0)} giving Figure~\ref{figb0}.
+
+\begin{figure}
+<<echo=FALSE,fig=TRUE>>=
+plot(b0)
+@
+\caption{Binary sequential boundary for testing $H_0: \theta<0.4$. Filled blue points are rejections and open orange points are failure to reject.  \label{figb0}}
+\end{figure}
+
+
+\section{Simon's Two-Stage Designs}
+
+We can calculate statistics on Simon's Two-stage designs (Simon, 1989). The designs were developed for screening new treatments where the response is positive (e.g., treatment is working).
+The action at the end of the study is either (1) do not pursue further studies of the new treatment since it does not appear to be sufficiently promising, or  (2) continue with further studies of the new treatment.
+For such as design, at the first stage, we sample $n_1$ observations and stop the study and do not pursue the new treatment further if the number of successes is less than or equal to $r_1$.
+If the number of successes at the first stage is greater than $r_1$, then we continue sampling until there are $n$ total observations, and at the end we only conclude that the new treatment is
+sufficiently promising if the number of successes is greater than $r$.  We can think of these types of designs as testing:
+\begin{eqnarray*}
+& \mbox{\underline{Hypothesis}} & \mbox{\underline{Action}} \\
+& H_0:  \theta \leq \theta_0 &  \mbox{No further study}  \\
+& H_1: \theta > \theta_0 & \mbox{Further Study}
+\end{eqnarray*}
+We set the type I error of the hypothesis at $\alpha$ and set the power under $\theta_1$ at $1-\beta$.
+
+Suppose that $\theta_0=.2$ and $\theta_1=.4$ and suppose that $\alpha=.05$ and $\beta=.2$, then Simon's optimal design (see Table 1 of Simon, 1989) has $r_1=3$, $n_1=13$, $r=12$ and $n=43$.
+Describing that design using the {\sf binseqtest} package is as follows:
+<<>>=
+B<-designAb(Nk=c(13,43),a=c(3),theta0=.2,conf.level=.95,alternative="greater")
+@
+The alternative="greater" means that we only continue with further studies if we can show that $\theta> \theta_0$ using a nominal significance level of $\alpha$, and the associated confidence intervals
+are at the $1-\alpha$ level.
+
+We can plot this boundary using {\sf plotBoundEst(B)} to get Figure~\ref{figSimon1}.
+\begin{figure}
+<<echo=FALSE,fig=TRUE>>=
+plot(B)
+@
+\caption{Binary sequential boundary for testing $H_0: \theta \leq 0.2$ using Simon's two-stage design with $r_1=3$ $n_1=13$, $r=12$ and $n=43$.  \label{figSimon1}}
+\end{figure}
+
+We can double-check the power,
+<<>>=
+powerBsb(B,theta=.4)
+@
+
+Suppose the study ends at the second stage with $S=20$ and $N=43$. Then the default statistics are given using the following command:
+<<>>=
+stopTable(B,S=20,N=43)
+@
+Note the default is to use the one-sided p-values and confidence intervals since that is how the study was designed. We can change the statistics to calculate the
+two-sided confidence intervals and p-values using
+<<>>=
+B2<-modify(B,conf.level=.95,alternative="two.sided")
+stopTable(B2,S=20,N=43)
+@
+
+If we miss stopping the first stage at $n_1=13$ and instead stop at $n_1=19$ (i.e., we miss stopping at 13 through 18) we can modify the boundary as follows
+<<>>=
+B3<-modify(B,missN=13:18)
+stopTable(B3,S=20,N=43)
+@
+and the new design is plotted in Figure~\ref{figSimon2}.
+
+\begin{figure}
+<<echo=FALSE,fig=TRUE>>=
+plot(B3)
+@
+\caption{Binary sequential boundary for testing $H_0: \theta \leq 0.2$ using Simon's two-stage design originally with $r_1=3$ $n_1=13$, $r=12$ and $n=43$,
+but then modified to stop at the first stage at $n_1=19$.   \label{figSimon2}}
+\end{figure}
+
+
+\section{Plotting Binary Sequential Boundaries}
+
+There are several options for plotting a binary sequential boundary using the {\sf bplottype} option.
+First we create a boundary with mostly default settings
+<<echo=TRUE>>=
+b<-designOBF(50,k=Inf,theta0=.3)
+@
+By default the boundary comes with 95\% confidence intervals, with binding stopping on both boundaries. In Figure~\ref{fig:4plots} we plot four types of plots to represent this boundary. In the plots, the sky-blue points represent rejecting the null hypothesis and concluding that $\theta> 0.3$, while the green-blue
+points represent rejecting and concluding that $\theta<0.3$.
+
+
+\begin{figure}
+<<echo=FALSE,fig=TRUE>>=
+b<-designOBF(50,k=Inf,theta0=.3)
+par(mfrow=c(2,2))
+plot(b,bplottype="NS")
+title("bplottype=NS")
+plot(b,bplottype="FS")
+title("bplottype=FS")
+plot(b,bplottype="NE")
+title("bplottype=NE")
+plot(b,bplottype="NB")
+title("bplottype=NB")
+par(mfrow=c(1,1))
+@
+\caption{Binary sequential boundary for testing $H_0: \theta = 0.3$ using an O-Brien-Fleming type boundary. The 'NE' type gives estimates and confidence intervals associated with the points.
+\label{fig:4plots}}
+\end{figure}
+
+
+\section*{References}
+
+\begin{description}
+\item Simon, R (1989). Optimal Two-Stage Designs for Phase II Clinical Trials. {\it Controlled Clinical Trials.} {\bf 10}:1-10.
+\end{description}
+
+\end{document}
+

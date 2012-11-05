@@ -1,0 +1,12 @@
+importFrom("graphics", plot)
+importFrom("methods", show)
+exportClasses(abparms)
+exportClasses(bound)
+exportClasses(boundNBF)
+export(unirootDiscrete,designOBF,designOBFpower,designAb,
+    stopTable,modify,print.stopTable,analyzeBound,analyzeBoundNBF,
+    powerBsb,getTSalpha,getAlternative,prStop,EN)
+exportMethods(plot)
+exportMethods(analyze)
+exportMethods(summary)
+S3method(print,stopTable)
