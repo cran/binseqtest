@@ -1,0 +1,4 @@
+Changes to version 0.4
+- for designFixedpower and designOBFpower change the argument Nmax to maxNmax since it better describes what it is. It is the maximum of the possible values of Nmax.
+- removed designSimon from demo, because it is a function in the package
+

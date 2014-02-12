@@ -992,10 +992,14 @@ designAb<-function(Nk,a=NULL,b=NULL,theta0=NULL,tsalpha=NULL, alternative="two.s
 
 designSimon<-function(theta0,theta1,alpha=.05,beta=.2,type=c("optimal","minimax")){
     # need clinfun R package
-    # for notation and description see ?ph2simon after loading clinfun
+    # for notation and description 
+    # see ?ph2simon after loading clinfun
     p0<-theta0
     p1<-theta1
-    if (!require(clinfun)) stop("need to install the clinfun R package first")
+    # MADE package depend on clinfun
+    # so do not need the following commented lines
+    #if (!require(clinfun)) stop("need to install 
+    # the clinfun R package first")
     type<-match.arg(type)
     x<-ph2simon(p0,p1,alpha,beta)
     # see print.ph2simon
@@ -1723,7 +1727,7 @@ designFixed<-function(Nmax, theta0=.5, tsalpha=NULL, alternative="two.sided",
     B
 }
 
-designFixedpower<-function(theta0=.5, theta1=.6, power=.8, Nmax=Inf, tsalpha=NULL, alternative=NULL, 
+designFixedpower<-function(theta0=.5, theta1=.6, power=.8, maxNmax=Inf, tsalpha=NULL, alternative=NULL, 
     conf.level=0.95,allNgreater=FALSE){
     TSalpha<-getTSalpha(tsalpha,alternative,conf.level)
     if (theta1>theta0){
@@ -1733,7 +1737,8 @@ designFixedpower<-function(theta0=.5, theta1=.6, power=.8, Nmax=Inf, tsalpha=NUL
          onesided.alpha<-TSalpha[2]
          powerFunc<-powerLower
     }
-    # if Nmax<Inf check that Nmax is large enough
+    # if Nmax<Inf check that Nmax is large enough 
+    Nmax<-maxNmax
     if (Nmax<Inf){
         powMax<-powerFunc(Nmax,theta0,theta1,onesided.alpha)
         if (powMax<power) stop("Nmax not large enough for specified power")
@@ -1751,7 +1756,7 @@ designFixedpower<-function(theta0=.5, theta1=.6, power=.8, Nmax=Inf, tsalpha=NUL
 #    Design using O-F method 
 # 
 #####################################################################################
-designOBFpower<-function(Nmax,
+designOBFpower<-function(
         theta0=.5,theta1=.6,
         k=Inf,
         power=.9,
@@ -1760,7 +1765,7 @@ designOBFpower<-function(Nmax,
         conf.level=0.95,
         binding="both",
         allNgreater=FALSE,
-        checkmax=10){
+        checkmax=10, maxNmax=2*ss){
     TSalpha<-getTSalpha(tsalpha,alternative,conf.level)
     alternative<-getAlternative(TSalpha)
 
@@ -1782,6 +1787,7 @@ designOBFpower<-function(Nmax,
     ## check that Nmax is large enough 
     ssFixed<-sampleSizeFixedBin(theta0,theta1,onesided.alpha,power,allNgreater)
     ss<-ssFixed 
+    Nmax<-maxNmax
     pow<-0  
     if (Nmax<ss) stop("Nmax too small for this power")
     getPower<-function(ss){

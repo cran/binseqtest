@@ -12,7 +12,9 @@ Other modifications possible: level of the confidence intervals (using tsalpha, 
 non-binding futility boundaries), null hypothesis value (theta0), and whether the confidence intervals should match the non-binding futility p-values on the superiority boundaries (cipMatch).  
 }
 \usage{
-modify(b, missN = NULL, theta0 = NULL, tsalpha = NULL, conf.level = NULL, alternative = NULL, cipMatch = TRUE, binding = NULL, closeout=NULL,  ...)
+modify(b, missN = NULL, theta0 = NULL, tsalpha = NULL,
+    conf.level = NULL, alternative = NULL, cipMatch = TRUE,
+    binding = NULL, closeout=NULL,  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

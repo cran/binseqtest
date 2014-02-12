@@ -8,7 +8,9 @@
      to the sign change and is positive (or negative).
 }
 \usage{
-unirootDiscrete(f, interval, lower = min(interval), upper = max(interval), tol = 10^-5, pos.side = FALSE, print.steps = FALSE, maxiter = 1000, ...)
+unirootDiscrete(f, interval, lower = min(interval), 
+    upper = max(interval), tol = 10^-5, pos.side = FALSE,
+    print.steps = FALSE, maxiter = 1000, ...)
 }
 \arguments{
   \item{f}{ function for which a root is needed }

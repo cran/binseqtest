@@ -20,17 +20,26 @@ from the \pkg{clinfun} package to create boundaries using Simon's (1989) two-sta
 }
 \usage{
 
-designAb(Nk, a = NULL, b = NULL, theta0 = NULL, tsalpha = NULL, alternative = "two.sided", conf.level = 0.95, binding = "both")
+designAb(Nk, a = NULL, b = NULL, theta0 = NULL, 
+    tsalpha = NULL, alternative = "two.sided", 
+    conf.level = 0.95, binding = "both")
 
-designOBF(Nmax,theta0 = 0.5,  k = Inf,  tsalpha = NULL, alternative = "two.sided", conf.level = 0.95, binding = "both")
-designOBFpower(Nmax, theta0 = 0.5, theta1=.6,  k=Inf,
-        power=.9, tsalpha = NULL, alternative = "two.sided", conf.level = 0.95, binding = "both", allNgreater=FALSE,
-        checkmax=10)
+designOBF(Nmax,theta0 = 0.5,  k = Inf,  tsalpha = NULL,
+    alternative = "two.sided", conf.level = 0.95, 
+    binding = "both")
+designOBFpower(theta0 = 0.5, theta1=.6,  k=Inf,
+    power=.9, tsalpha = NULL, alternative = "two.sided",
+    conf.level = 0.95, binding = "both", allNgreater=FALSE,
+    checkmax=10, maxNmax=2*ss)
 
-designFixed(Nmax, theta0 = 0.5, tsalpha = NULL, alternative = "two.sided", conf.level = 0.95)
-designFixedpower(theta0 = 0.5, theta1 = 0.6, power = 0.8, Nmax = Inf, tsalpha = NULL, alternative = NULL, conf.level = 0.95, allNgreater = FALSE)
+designFixed(Nmax, theta0 = 0.5, tsalpha = NULL, 
+    alternative = "two.sided", conf.level = 0.95)
+designFixedpower(theta0 = 0.5, theta1 = 0.6, power = 0.8,
+    maxNmax = Inf, tsalpha = NULL, alternative = NULL,
+    conf.level = 0.95, allNgreater = FALSE)
 
-designSimon(theta0, theta1, alpha = 0.05, beta = 0.2, type = c("optimal", "minimax"))
+designSimon(theta0, theta1, alpha = 0.05, beta = 0.2, 
+    type = c("optimal", "minimax"))
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -38,7 +47,8 @@ designSimon(theta0, theta1, alpha = 0.05, beta = 0.2, type = c("optimal", "minim
   \item{Nk}{vector of unique N values where there is stopping}
   \item{a}{numeric vector with length(a)=length(Nk)-1, stop if number of successes out of Nk[i] is less than or equal to a[i] (see details)}
   \item{b}{numeric vector with length(a)=length(Nk)-1, stop if number of successes out of Nk[i] is greater than or equal to b[i] (see details)}
-  \item{Nmax}{maximum number of observations allowed (see details)}
+  \item{Nmax}{maximum number of observations for the design}
+  \item{maxNmax}{maximum number for Nmax (see details)}
   \item{k}{number of looks at the data, Inf denotes looking after each observation}
   \item{theta0}{probability of success under the null}
   \item{tsalpha}{vector of length 2 with nominal significance levels for each side, if not NULL overrides \code{conf.level} and \code{alternative} 

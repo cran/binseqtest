@@ -1,5 +1,7 @@
+# binseqtest package depends on clinfun 
+# so it is included automatically 
 #require(clinfun)
-library(clinfun)
+#library(clinfun)
 # to test the ph2simon function in the clinfun R package, we 
 # reproduce Tables 1 and 2 of Simon (1989)
 

@@ -10,8 +10,12 @@ For routine use, these functions will not need to be called directly but are cal
 and the appropriate function is called.
 }
 \usage{
-analyzeBound(object, theta0 = 0.5, stats = "all", alternative = "two.sided", conf.level = 0.95, tsalpha = NULL, ...)
-analyzeBoundNBF(object, theta0 = 0.5, stats = "all", alternative = "two.sided", conf.level = 0.95, tsalpha = NULL, cipMatch = TRUE, ...)
+analyzeBound(object, theta0 = 0.5, stats = "all", 
+    alternative = "two.sided", conf.level = 0.95, 
+    tsalpha = NULL, ...)
+analyzeBoundNBF(object, theta0 = 0.5, stats = "all", 
+    alternative = "two.sided", conf.level = 0.95, 
+    tsalpha = NULL, cipMatch = TRUE, ...)
 }
 \arguments{
   \item{object}{a binary sequential boundary (for classes see \code{\link{bound-class}})}

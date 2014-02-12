@@ -9,7 +9,8 @@ Create data frame with statistics for stopping boundary
 Takes boundEst object and creates data frame with p-values and confidence intervals for stopping points between \code{Nmin} and \code{Nmax}.
 }
 \usage{
-stopTable(object, Nrange = c(0,Inf), Srange=c(0,Inf),output="all",file="stopTableOutput.csv")
+stopTable(object, Nrange = c(0,Inf), 
+    Srange=c(0,Inf),output="all",file="stopTableOutput.csv")
 
 \method{print}{stopTable}(x,digits=c(3,5),maxnprint=Inf,\dots)
 }
