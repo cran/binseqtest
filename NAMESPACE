@@ -4,8 +4,9 @@ exportClasses(abparms)
 exportClasses(bound)
 exportClasses(boundNBF)
 export(unirootDiscrete,designOBF,designOBFpower,designAb,
-    stopTable,modify,print.stopTable,analyzeBound,analyzeBoundNBF,
-    powerBsb,getTSalpha,getAlternative,prStop,EN)
+  stopTable,modify,print.stopTable,analyzeBound,analyzeBoundNBF,
+    powerBsb,getTSalpha,getAlternative,prStop,EN,
+    designSimon, designFixed, designFixedpower )
 exportMethods(plot)
 exportMethods(analyze)
 exportMethods(summary)

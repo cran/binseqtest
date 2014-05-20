@@ -28,7 +28,7 @@ analyzeBoundNBF(object, theta0 = 0.5, stats = "all",
   \item{\dots}{further arguments to be passed}
 }
 %\details{}
-\value{if stats='all' returns an object of class 'boundEst' otherwise }
+\value{if stats='all' returns an object of class 'boundEst', otherwise returns a numeric vector of p-values}
 %\references{}
 %\author{%%  ~~who you are~~}
 %\note{%%  ~~further notes~~}

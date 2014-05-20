@@ -71,7 +71,7 @@ vector allows the nominal error to be different on each side. For details see \c
 
 For \code{designAb}, when you do not want to stop on the lower or upper boundary at any value of Nk, the associated value of a (lower) or b (upper) should be NA. 
 
-The \code{designOBF} function calculates a boundary that stops whenever the B-value (Lan and Wittes, 1988) is larger one cutoff value or smaller than a different cutoff value. 
+The \code{designOBF} function calculates a boundary that stops whenever the B-value (Lan and Wittes, 1988) is larger than one cutoff value or smaller than a different cutoff value. 
 The cutoff values are chosen so that the probability of spending alpha on the appropriate side 
 is almost all spent while still rejecting at at least one end value of the boundary. 
 
@@ -84,12 +84,16 @@ So if you set \code{checkmax}=1 then you will
 check the largest value of Nmax first, but this may be inefficient since larger values of Nmax in the \code{obf} call are slower.  
 
 
-
+See Kirk and Fay (2014) for an introductory paper about exact binary sequential tests using the binseqtest package.
 }
 \value{
 a object of class \code{\link{boundEst}}
 }
 \references{
+Kirk, J, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (unpublished manuscript).
+
+Lan, KKG, and Wittes, J (1988). The B-Value: A Tool for Monitoring Data. Biometrics 44:579-585.
+
 Simon R. (1989). Optimal Two-Stage Designs for Phase II Clinical Trials. Controlled Clinical Trials 10, 1-10. 
 }
 %\author{%%  ~~who you are~~}

@@ -1,3 +1,8 @@
+changes to Version 0.5
+-add designSimon, designFixed, and designFixedpower to NAMESPACE so they can be used. 
+- edit help files for clarity
+
+
 Changes to version 0.4
 - for designFixedpower and designOBFpower change the argument Nmax to maxNmax since it better describes what it is. It is the maximum of the possible values of Nmax.
 - removed designSimon from demo, because it is a function in the package

@@ -8,7 +8,7 @@
 }
 \details{
   \tabular{ll}{ Package: \tab binseqtest\cr Type: \tab
-  Package\cr Version: \tab 0.3\cr Date: \tab 2012-11-05\cr
+  Package\cr Version: \tab 0.4\cr Date: \tab 2014-05-19\cr
   License: \tab GPL (>=2)\cr LazyLoad: \tab yes\cr }
 
   The package creates designs for testing a series of
@@ -21,7 +21,13 @@ There are functions for creating the binary sequential boundaries or binary grou
 creating tables of statistics (estimates, confidence intervals, and p-values) at 
 specific stopping points in the boundary (see \code{link{stopTable}}), modifying the boundaries (see \code{\link{modify}}), 
 and plotting the boundaries (\code{\link{plot-methods}}).
+
+For details see Kirk and Fay (2014).
 }
+\references{
+Kirk, JL, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (unpublished manuscript).
+}
+
 \examples{
 # create an O'Brien-Fleming-type design, with 2.5 percent error on each side with max N of 50
 B<-designOBF(50)
@@ -34,7 +40,7 @@ Bmod<-modify(B,missN=30:35)
 plot(Bmod)
 }
 \author{
-  Jenn Kirk, Mike Fay
+  Jenn Kirk, Michael P. Fay
 }
 \keyword{package}
 

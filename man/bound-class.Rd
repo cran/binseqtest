@@ -56,14 +56,14 @@
 \details{
   The simplest representation of a binary sequential
   boundary is the abparms class, represented by a vector of
-  the total number of trials (Nk) where stop, and denoting
+  the total number of trials (Nk) where to stop, and denoting
   stopping when number of sucesses, S, is S>=b or S<= a.
   One sided boundaries can be represented by all NA values
   for either a or b. Often times a two-sided boundary
   treats one side as a superiority boundary which must be
-  stopped if cross (a binding boundary), while the other
+  stopped if crossed (a binding boundary), while the other
   side of the boundary is a futility boundary which may be
-  ignore (a non-binding boundary). For example when
+  ignored (a non-binding boundary). For example when
   binding='upper', then p-values for the upper boundary are
   calculated as if the lower boundaries are ignored if
   crossed and stopping happens on the lower side at max(Nk)
@@ -78,4 +78,4 @@
 \examples{
 new("abparms",Nk=200)
 }
-\author{ Jenn Kirk, Mike Fay}
+\author{ Jenn Kirk, Michael P. Fay}
