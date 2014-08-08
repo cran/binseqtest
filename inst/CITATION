@@ -1,0 +1,18 @@
+citHeader("To cite interval in publications use:")
+
+citEntry(entry = "Article",
+  title        = "An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package",
+  author       = personList(as.person("Jennifer L. Kirk"),as.person("Michael P. Fay")),
+  journal      = "American Statistician",
+  year         = "2014",
+  volume       = "(to appear)",
+  number       = "",
+  pages        = "",
+  url          = "",
+
+  textVersion  =
+  paste("Jennifer L. Kirk, Michael P. Fay (2014).",
+        "An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package.",
+        "American Statistician (to appear)")
+)
+

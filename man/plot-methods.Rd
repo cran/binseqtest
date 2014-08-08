@@ -3,16 +3,24 @@
 \alias{plot-methods}
 \alias{plot,boundEst,ANY-method}
 \alias{plot,boundEst,missing-method}
-\title{Methods for Function \code{plot} in Package \pkg{binseqtest}}
+\alias{points-methods}
+\alias{points,ANY-method}
+\alias{points,boundEst-method}
+
+
+\title{Methods for Function \code{plot} and \code{points} in Package \pkg{binseqtest}}
 \description{
   Plot binary sequential boundaries for \code{"boundEst"} objects. 
 }
 \usage{
 \S4method{plot}{boundEst,missing}(x, 
-    rcol = c(orange = "#E69F00", skyBlue = "#56B4E9", greenBlue = "#009E73"), 
-    rpch = c(1, 16, 16), 
+    rcol = c(orange = "#E69F00", blue = "#56B4E9", green = "#009E73"), 
+    rpch = c(openCircle=1, filledCircle=16, filledDiamond=18), 
     bplottype = "NS",   
     newplot = TRUE, dtext=NULL, grid=50, xlab=NULL, ylab=NULL, \dots)
+
+\S4method{points}{boundEst}(x, \dots)
+
 }
 \arguments{
  \item{x}{an object of class \code{"boundEst"} }
@@ -32,6 +40,9 @@
       \code{\link[graphics]{plot}}.}
     \item{\code{signature(x = "boundEst", y = "missing")}}{Plot
       binary sequential boundaries for \code{x}.}
+    \item{\code{signature(x = "ANY")}}{Generic function: see
+      \code{\link[graphics]{points}}.}
+    \item{\code{signature(x = "boundEst")}}{Add points associated with the binary sequential boundaries for \code{x} to a plot.}
   }
 }
 \details{
@@ -44,11 +55,16 @@ axis. Other plots are: 'FS'=failure by successes; 'NB'=total by B-values; 'NZ'=t
 if there are only 1 value for each N on the upper and 1 value for each N on the lower part of the boundary. Otherwise, the confidence intervals would overlap and be uninformative. 
 For 'NE' the end of the boundary is not plotted because of that overlapping.  
 
-For some examples, see plot section of the vignette. 
+For some examples, see plot section of the vignette. The method points just calls \code{plot(x,newPlot=FALSE,\dots)}. 
 }
 \examples{
-b<-designOBF(50,theta0=.3)
+b<-designOBF(50,theta0=.5)
 plot(b,bplottype="NE")
+plot(b)
+b2<-designFixed(49,theta0=.5)
+points(b2,rpch=c(17,17,17))
+
+
 }
 \keyword{methods}
 

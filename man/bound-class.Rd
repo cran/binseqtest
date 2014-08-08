@@ -9,6 +9,8 @@
 \alias{boundEst}
 \alias{boundEst-class}
 
+
+
 \title{Classes for binary sequential boundaries}
 \description{
   There are several classes that represent binary
@@ -74,6 +76,9 @@
   point), S (number of sucesses at each point), K (number
   of ways to get to each point), order (ordering of points
   for p-value calculations), UL('upper','lower' or 'end').
+}
+\section{Methods}{
+There is a \code{plot} and a \code{points} method for \code{boundEst} objects. 
 }
 \examples{
 new("abparms",Nk=200)

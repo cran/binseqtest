@@ -1025,7 +1025,8 @@ designSimon<-function(theta0,theta1,alpha=.05,beta=.2,type=c("optimal","minimax"
 #   METHODS
 #
 ##############################################################
-plotBsb<-function(x,rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73"), rpch=c(1,16,16), 
+plotBsb<-function(x,rcol=c(orange="#E69F00",blue="#56B4E9",green="#009E73"), 
+    rpch=c(openCircle=1,filledCircle=16,filledDiamond=18), 
     bplottype="NS",newplot=TRUE, dtext=NULL, grid=50, xlab=NULL,ylab=NULL,...){
     # default colors for rcol: 
     #              orange (fail to reject), put
@@ -1034,6 +1035,7 @@ plotBsb<-function(x,rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73
     #  allow good differentiation for those with several of the 
     # most common type of colorblindness
     rcolNames<-names(rcol)
+    rpchNames<-names(rpch)
     if (!is.logical(newplot)) stop("newplot should be logical")
     if (is.null(dtext)){
         # default dtext: if only 1 panel put text if newplot, otherwise do not
@@ -1091,11 +1093,16 @@ plotBsb<-function(x,rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73
 
         if (any(RejectUpper)) points(x@N[RejectUpper],x@S[RejectUpper], pch=rpch[2], col = rcol[2])
         if (any(RejectLower)) points(x@N[RejectLower],x@S[RejectLower], pch=rpch[3], col = rcol[3])
-        if (dtext){
+        if (dtext){            
             text(.1*max(x@N),.95*max(x@N),labels=c("Gray line is null hyothesis,"),pos=4)
             text(.1*max(x@N),.9*max(x@N),labels=bquote(theta[0] == .(x@theta0)),pos=4)
-            text(.1*max(x@N),.85*max(x@N),labels=paste("Reject (",rcolNames[2],") if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
-            text(.1*max(x@N),.8*max(x@N),labels=paste("Reject (",rcolNames[3],") if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            if (is.null(rcolNames) & is.null(rpchNames)){
+                text(.1*max(x@N),.85*max(x@N),labels=paste("Reject (top) if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
+                text(.1*max(x@N),.8*max(x@N),labels=paste("Reject (bottom) if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            } else {
+                text(.1*max(x@N),.85*max(x@N),labels=paste("Reject (",rcolNames[2]," ",rpchNames[2],") if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
+                text(.1*max(x@N),.8*max(x@N),labels=paste("Reject (",rcolNames[3]," ",rpchNames[3],") if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            }
             if (x@binding=="both"){ btext<-" boundaries"
             } else btext<-" boundary"
             text(.1*max(x@N),.75*max(x@N),labels=paste("binding on ",x@binding,btext,sep=""),pos=4)
@@ -1137,8 +1144,13 @@ plotBsb<-function(x,rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73
         if (dtext){
             text(.5*max(x@N),.95*max(x@N),labels=c("Gray line is null hyothesis,"),pos=4)
             text(.5*max(x@N),.9*max(x@N),labels=bquote(theta[0] == .(x@theta0)),pos=4)
-            text(.5*max(x@N),.85*max(x@N),labels=paste("Reject (",rcolNames[2],") if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
-            text(.5*max(x@N),.8*max(x@N),labels=paste("Reject (",rcolNames[3],") if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            if (is.null(rcolNames) & is.null(rpchNames)){
+                text(.5*max(x@N),.85*max(x@N),labels=paste("Reject (top) if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
+                text(.5*max(x@N),.8*max(x@N),labels=paste("Reject (bottom) if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            } else {
+                text(.5*max(x@N),.85*max(x@N),labels=paste("Reject (",rcolNames[2]," ",rpchNames[2],") if p[upper]<",x@tsalpha["alphaLower"],sep=""),pos=4)
+                text(.5*max(x@N),.8*max(x@N),labels=paste("Reject (",rcolNames[3]," ",rpchNames[3],") if p[lower]<",x@tsalpha["alphaUpper"],sep=""),pos=4)
+            }
             if (x@binding=="both"){ btext<-" boundaries"
             } else btext<-" boundary"
             text(.5*max(x@N),.75*max(x@N),labels=paste("binding on ",x@binding,btext,sep=""),pos=4)
@@ -1191,12 +1203,12 @@ plotBsb<-function(x,rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73
             axis(1)
             axis(2)
         }
-        drawEstCI<-function(I,COL,LWD){
-            points(N[I],estimate[I],col=COL,pch=16)
+        drawEstCI<-function(I,COL,LWD,PCH){
+            points(N[I],estimate[I],col=COL,pch=PCH)
             segments(N[I],lower[I],N[I],upper[I],col=COL,lwd=LWD)
         }
-        drawEstCI(keep=="upper",rcol[2],3)
-        drawEstCI(keep=="lower",rcol[3],1)
+        drawEstCI(keep=="upper",rcol[2],3,PCH=rpch[2])
+        drawEstCI(keep=="lower",rcol[3],1,PCH=rpch[3])
     } else if (bplottype=="NZ" | bplottype=="NB"){
         Z<- (x@S/x@N - x@theta0)/sqrt( (x@theta0*(1-x@theta0))/x@N)
         # for graying out impossible areas, calculate Zhi and Zlo for 0:M
@@ -1267,7 +1279,8 @@ setGeneric("plot")
 setMethod("plot", signature(x="boundEst",y="missing"),plotBsb)
 
 setGeneric("points")
-setMethod("points", signature(x="boundEst"),pointsBsb)
+setMethod("points", 
+     signature(x="boundEst"),pointsBsb)
 
 #pointsAbparms<-function(x,...){
 #    plotAbparms(x,...,newplot=FALSE)
@@ -1519,8 +1532,8 @@ prStop<-function(object,theta=NULL){
 #plotBsb(b)
 #x<-prStop(b)
 plotPrStop<-function(x,
-    rcol=c(orange="#E69F00",skyBlue="#56B4E9",greenBlue="#009E73"),
-    rpch=c(1,16,16),total=FALSE){
+    rcol=c(orange="#E69F00",blue="#56B4E9",green="#009E73"),
+    rpch=c(openCircle=1,filledCircle=16,filledDiamond=18),total=FALSE){
 
    if (total){
        # plot total probability of stopping

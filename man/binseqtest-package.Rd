@@ -25,7 +25,7 @@ and plotting the boundaries (\code{\link{plot-methods}}).
 For details see Kirk and Fay (2014).
 }
 \references{
-Kirk, JL, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (unpublished manuscript).
+Kirk, JL, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (to appear in American Statistician).
 }
 
 \examples{

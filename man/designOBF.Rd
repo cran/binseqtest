@@ -90,7 +90,7 @@ See Kirk and Fay (2014) for an introductory paper about exact binary sequential 
 a object of class \code{\link{boundEst}}
 }
 \references{
-Kirk, J, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (unpublished manuscript).
+Kirk, J, and Fay, MP (2014). An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package. (to appear in American Statistician).
 
 Lan, KKG, and Wittes, J (1988). The B-Value: A Tool for Monitoring Data. Biometrics 44:579-585.
 

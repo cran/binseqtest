@@ -1,3 +1,9 @@
+changes to Version 1.0
+ - change default points to have different symbols for different rejection directions
+ - change reference, add citation file
+ - fix NAMESPACE so points method for boundEst objects works
+
+
 changes to Version 0.5
 -add designSimon, designFixed, and designFixedpower to NAMESPACE so they can be used. 
 - edit help files for clarity
