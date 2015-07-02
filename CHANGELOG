@@ -1,3 +1,8 @@
+changes to Version 1.0.1
+- edit CITATION file
+- change NAMESPACE to pass new CRAN check
+
+
 changes to Version 1.0
  - change default points to have different symbols for different rejection directions
  - change reference, add citation file

@@ -5,14 +5,14 @@ citEntry(entry = "Article",
   author       = personList(as.person("Jennifer L. Kirk"),as.person("Michael P. Fay")),
   journal      = "American Statistician",
   year         = "2014",
-  volume       = "(to appear)",
-  number       = "",
-  pages        = "",
+  volume       = "68",
+  number       = "4",
+  pages        = "230-242",
   url          = "",
 
   textVersion  =
   paste("Jennifer L. Kirk, Michael P. Fay (2014).",
         "An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package.",
-        "American Statistician (to appear)")
+        "American Statistician. 68(4): 230-242")
 )
 
