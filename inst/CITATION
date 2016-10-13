@@ -1,4 +1,4 @@
-citHeader("To cite interval in publications use:")
+citHeader("To cite binseqtest in publications use:")
 
 citEntry(entry = "Article",
   title        = "An Introduction to Practical Sequential Inferences via Single Arm Binary Response Studies Using the binseqtest R Package",
