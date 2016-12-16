@@ -1,3 +1,8 @@
+changes to Version 1.0.3
+- add nmax option to designSimon. Pass that option to the call for the ph2simon function in the clinfun package.
+
+
+
 changes to Version 1.0.2
 - edit CITATION file
 

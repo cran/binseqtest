@@ -39,7 +39,7 @@ designFixedpower(theta0 = 0.5, theta1 = 0.6, power = 0.8,
     conf.level = 0.95, allNgreater = FALSE)
 
 designSimon(theta0, theta1, alpha = 0.05, beta = 0.2, 
-    type = c("optimal", "minimax"))
+    type = c("optimal", "minimax"), nmax=100)
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -64,6 +64,7 @@ designSimon(theta0, theta1, alpha = 0.05, beta = 0.2,
 \item{alpha}{one sided alpha level for test theta>theta0}
 \item{beta}{1-power, for theta1}
 \item{type}{character, type of 2-stage design, either 'optimal' or 'minimax'}
+\item{nmax}{maximum total sample size, cannot be higher than 1000}
 }
 \details{
 The \code{tsalpha}, \code{alternative}, and \code{conf.level} are input into the \code{\link{getTSalpha}} function to output a \code{tsalpha} vector. The \code{tsalpha} 

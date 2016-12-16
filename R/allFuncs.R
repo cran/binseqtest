@@ -990,7 +990,7 @@ designAb<-function(Nk,a=NULL,b=NULL,theta0=NULL,tsalpha=NULL, alternative="two.s
     B
 }
 
-designSimon<-function(theta0,theta1,alpha=.05,beta=.2,type=c("optimal","minimax")){
+designSimon<-function(theta0,theta1,alpha=.05,beta=.2,type=c("optimal","minimax"),nmax=100){
     # need clinfun R package
     # for notation and description 
     # see ?ph2simon after loading clinfun
@@ -1001,7 +1001,7 @@ designSimon<-function(theta0,theta1,alpha=.05,beta=.2,type=c("optimal","minimax"
     #if (!require(clinfun)) stop("need to install 
     # the clinfun R package first")
     type<-match.arg(type)
-    x<-ph2simon(p0,p1,alpha,beta)
+    x<-ph2simon(p0,p1,alpha,beta,nmax=nmax)
     # see print.ph2simon
     xout <- x$out
     nmax <- x$nmax
