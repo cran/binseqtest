@@ -7,10 +7,6 @@
   Design and analyze binary sequential tests
 }
 \details{
-  \tabular{ll}{ Package: \tab binseqtest\cr Type: \tab
-  Package\cr Version: \tab 1.0.2\cr Date: \tab 2016-10-12\cr
-  License: \tab GPL (>=2)\cr LazyLoad: \tab yes\cr }
-
   The package creates designs for testing a series of
   binary responses sequentially. It allows checking after
   every response, or grouped sequential tests. Gives exact

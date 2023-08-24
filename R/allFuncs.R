@@ -340,7 +340,7 @@ abBindBothCalcK<-function(object){
     osign[UL=="end"]<- 0
     orderingStat<-         osign*(-Nmax +N) + (.5)*(S/N)
     # in case object is not of class abparms, just take that part of it 
-    if (class(object)!="abparms"){
+    if (!inherits(object,what="abparms")){
         object<-new("abparms",Nk=object@Nk,a=object@a,b=object@b,binding=object@binding)
     }
     B<-new("bound",object,S=S,N=N,K=K,order=rank(orderingStat),UL=UL)
@@ -351,8 +351,11 @@ abBindBothCalcK<-function(object){
 
 abtoBound<-function(from){
     object<-from
-    if (!(class(object) %in% c("abparms","bound","boundEst","boundNBF","boundNBFEst"))) stop("need to input object that contains abparms object")
-    ## take abparms object and convert to bound object
+    if (!inherits(object, what=c("abparms",
+                               "bound","boundEst",
+                               "boundNBF","boundNBFEst"))
+        ) stop("need to input object that contains abparms object")
+     ## take abparms object and convert to bound object
     binding<-object@binding
     if (binding=="both"){
         B<-abBindBothCalcK(object)

@@ -1,3 +1,11 @@
+
+changes to Version 1.0.4
+- fix binseqtest-package.Rd file.
+- fix CITATION file
+- change statement of type if(class(x)=="text") to 
+   if(inherits(x,what="text"))
+
+
 changes to Version 1.0.3
 - add nmax option to designSimon. Pass that option to the call for the ph2simon function in the clinfun package.
 
